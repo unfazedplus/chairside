@@ -6,6 +6,10 @@ import { createClient } from "@/lib/supabase/server";
 
 export const metadata = { title: "Dashboard" };
 
+// This route reads the auth cookie and queries per-user rows, so it cannot be
+// prerendered. Opting out keeps Cache Components from blocking the build.
+export const instant = false;
+
 export default async function DashboardPage() {
   const supabase = await createClient();
   const {

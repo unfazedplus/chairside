@@ -4,6 +4,9 @@ import { LoginForm } from "@/app/login/login-form";
 
 export const metadata = { title: "Sign in" };
 
+// Reads searchParams (post-auth error state), so it is request-bound.
+export const instant = false;
+
 export default async function LoginPage({
   searchParams,
 }: {

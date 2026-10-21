@@ -10,7 +10,7 @@ const PROTECTED_PREFIXES = ["/dashboard", "/settings", "/onboarding"];
  * authenticated area. Doing this in middleware (rather than per page) keeps
  * Server Components free of redirect logic.
  */
-export async function middleware(request: NextRequest) {
+export async function proxy(request: NextRequest) {
   let response = NextResponse.next({ request });
   const env = getPublicEnv();
 

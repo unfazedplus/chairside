@@ -72,11 +72,20 @@ Two ideas do the heavy lifting:
 
 Requirements: Node 22+, npm 11+.
 
+New to the three-service setup? Read [docs/setup.md](docs/setup.md) first — it
+explains what belongs in GitHub versus Supabase, which keys are secret, and why
+`.env.local` is never committed.
+
 ```bash
 npm install
 cp .env.example .env.local   # fill in your Supabase project values
+npx supabase link --project-ref <your-project-ref>
+npx supabase db push         # applies supabase/migrations to your project
 npm run dev
 ```
+
+Magic links also require your redirect URLs to be registered in Supabase under
+**Authentication → URL Configuration**. See [docs/setup.md](docs/setup.md).
 
 Verification:
 

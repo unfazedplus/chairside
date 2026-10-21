@@ -1,26 +1,57 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens. A salon product should feel calm and tactile: warm paper,
+ * near-black ink, and a single clay accent rather than a rainbow.
+ */
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --paper: #fbf8f4;
+  --paper-raised: #ffffff;
+  --ink: #1a1614;
+  --ink-muted: #6b625c;
+  --line: #e6ddd3;
+  --clay: #a8543a;
+  --clay-strong: #8c4028;
+  --sage: #4f6b5c;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
+  --color-paper: var(--paper);
+  --color-paper-raised: var(--paper-raised);
+  --color-ink: var(--ink);
+  --color-ink-muted: var(--ink-muted);
+  --color-line: var(--line);
+  --color-clay: var(--clay);
+  --color-clay-strong: var(--clay-strong);
+  --color-sage: var(--sage);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --radius-card: 0.875rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  -webkit-text-size-adjust: 100%;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible focus for keyboard users on every interactive element. */
+:focus-visible {
+  outline: 2px solid var(--clay);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
 }

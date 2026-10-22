@@ -112,8 +112,12 @@ create table public.appointments (
   updated_at timestamptz not null default now(),
   constraint appointments_ordered check (ends_at > starts_at),
   -- The interval a chair is actually unavailable for, including turnaround.
-  occupied_range tstzrange generated always as (
-    tstzrange(starts_at, ends_at + (buffer_minutes * interval '1 minute'), '[)')
+    occupied_range tstzrange generated always as (
+    tstzrange(
+      starts_at,
+      ((ends_at at time zone 'UTC') + (buffer_minutes * interval '1 minute')) at time zone 'UTC',
+      '[)'
+    )
   ) stored,
   -- Storage-level guarantee against double booking. Application code can race;
   -- this cannot. Cancelled and no-show bookings release the chair.
